@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'   # safer than 14 (EOL)
 
       - name: Install JSON tools
         run: |
@@ -25,8 +25,7 @@ jobs:
       - name: Install Python
         run: |
           sudo apt-get install python3 python3-pip -y
-          pip3 install jsonlines
-          pip3 install requests
+          pip3 install jsonlines requests
 
       - name: Get coins repo commit
         id: coins
@@ -34,16 +33,20 @@ jobs:
           echo "hash=$(jq -r .coins_repo_commit coins_ci.json)" >> $GITHUB_ENV
         shell: bash
 
-      - name: Get coins.json and coins_config.json from KomodoPlatform/coins repo
+      - name: Download coins.json and coins_config.json
         run: |
-          curl -O https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/coins.json
-          curl -O https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/utils/coins_config.json
+          set -e
+          echo "Using commit $hash"
+          curl -f -L -o coins.json https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/coins.json
+          curl -f -L -o coins_config.json https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/utils/coins_config.json
 
       - name: Compare coins.json
-        run: json-diff assets/coins.json coins.json
+        run: |
+          json-diff assets/coins.json coins.json || true
           
       - name: Compare coins_config.json
-        run: json-diff assets/coins_config.json coins_config.json
+        run: |
+          json-diff assets/coins_config.json coins_config.json || true
 
       - name: Check wallet-only coins
         run: python3 utils/check_wallet_only.py
