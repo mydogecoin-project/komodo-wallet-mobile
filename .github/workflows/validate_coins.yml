@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -36,11 +36,11 @@ jobs:
 
       - name: Get coins.json and coins_config.json from KomodoPlatform/coins repo
         run: |
-          curl -O https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/coins
+          curl -O https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/coins.json
           curl -O https://raw.githubusercontent.com/KomodoPlatform/coins/${hash}/utils/coins_config.json
 
       - name: Compare coins.json
-        run: json-diff assets/coins.json coins
+        run: json-diff assets/coins.json coins.json
           
       - name: Compare coins_config.json
         run: json-diff assets/coins_config.json coins_config.json
@@ -50,4 +50,3 @@ jobs:
 
       - name: Check URLs in app_config.dart
         run: python3 utils/check_urls.py
-
