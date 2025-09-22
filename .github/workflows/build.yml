@@ -43,7 +43,7 @@ jobs:
       # Download coins.json (from KomodoPlatform/coins)
       - name: Download coins.json
         run: |
-          curl -L https://raw.githubusercontent.com/KomodoPlatform/coins/master/coins -o coins.json
+          curl -L https://raw.githubusercontent.com/mydogecoin-project/coins/master/coins -o coins.json
 
       # mm2 lib download
       - run: mkdir -p android/app/src/main/cpp/libs/{armeabi-v7a,arm64-v8a}
