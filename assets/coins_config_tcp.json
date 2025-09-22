@@ -6291,6 +6291,54 @@
         ],
         "explorer_block_url": "block/"
     },
+    "MYDOGE": {
+            "coin": "MYDOGE",
+            "type": "UTXO",
+            "name": "Mydogecoin",
+            "coinpaprika_id": "mydoge-mydogecoin",
+            "coingecko_id": "mydogecoin",
+            "livecoinwatch_id": "MYDOGE",
+            "explorer_url": "https://explorer.mydogecoin.fun/",
+            "explorer_tx_url": "",
+            "explorer_address_url": "",
+            "supported": [],
+            "active": false,
+            "is_testnet": false,
+            "currently_enabled": false,
+            "wallet_only": false,
+            "sign_message_prefix": "Mydogecoin Signed Message:\n",
+            "fname": "Mydogecoin",
+            "rpcport": 22776,
+            "pubtype": 51,
+            "p2shtype": 30,
+            "wiftype": 158,
+            "txfee": 0,
+            "force_min_relay_fee": true,
+            "dust": 1000000,
+            "mm2": 1,
+            "required_confirmations": 2,
+            "avg_blocktime": 60,
+            "protocol": {
+                "type": "UTXO"
+            },
+            "derivation_path": "m/44'/1995'",
+            "trezor_coin": "Mydogecoin",
+            "links": {
+                "github": "https://github.com/mydogecoin-project/mydogecoin",
+                "homepage": "https://mydogecoin.fun"
+            },
+            "electrum": [
+                {
+                    "url": "electrumx1.mydogecoin.fun:60001",
+                    "protocol": "TCP"
+                },
+                {
+                    "url": "electrumx2.mydogecoin.fun:60001",
+                    "protocol": "TCP"
+                }
+            ],
+            "explorer_block_url": "block/"
+    },
     "BTC-segwit": {
         "coin": "BTC-segwit",
         "type": "UTXO",
